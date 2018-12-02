@@ -20,6 +20,7 @@
  */
 
 #include "chipmunk_private.h"
+#include <stdio.h>
 
 // TODO: Comment me!
 
@@ -28,7 +29,9 @@ void cpConstraintDestroy(cpConstraint *constraint){}
 void
 cpConstraintFree(cpConstraint *constraint)
 {
+	printf("Chipmunk: Testing constraint..\n");
 	if(constraint){
+		printf("Chipmunk: freeing constraint..\n");
 		cpConstraintDestroy(constraint);
 		cpfree(constraint);
 	}

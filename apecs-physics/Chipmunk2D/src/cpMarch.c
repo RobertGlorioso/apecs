@@ -52,6 +52,7 @@ cpMarchCells(
 		}
 	}
 	
+	printf("cpfree buffer\n");
 	cpfree(buffer);
 }
 

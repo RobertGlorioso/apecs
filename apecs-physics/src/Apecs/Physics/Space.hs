@@ -31,7 +31,7 @@ C.include "<chipmunk.h>"
 newSpace :: IO SpacePtr
 newSpace = do
     spaceRaw <- [C.exp| cpSpace* { cpSpaceNew() } |]
-    newForeignPtr spaceRaw [C.exp| void { cpSpaceFree($(cpSpace* spaceRaw)) } |]
+    newForeignPtr spaceRaw [C.exp| void { printf("Freeing Space..\n"); cpSpaceFree($(cpSpace* spaceRaw)) } |]
 
 explStepPhysics :: SpacePtr -> Double -> IO ()
 explStepPhysics spacePtr (realToFrac -> dT) = withForeignPtr spacePtr $ \space ->

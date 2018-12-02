@@ -107,7 +107,7 @@ cpCollisionHandler cpCollisionHandlerDoNothing = {
 static cpVect ShapeVelocityFunc(cpShape *shape){return shape->body->v;}
 
 // Used for disposing of collision handlers.
-static void FreeWrap(void *ptr, void *unused){cpfree(ptr);}
+static void FreeWrap(void *ptr, void *unused){printf("FreeWrap\n"); cpfree(ptr);}
 
 //MARK: Memory Management Functions
 
@@ -189,6 +189,7 @@ static void cpBodyActivateWrap(cpBody *body, void *unused){cpBodyActivate(body);
 void
 cpSpaceDestroy(cpSpace *space)
 {
+	printf("Destroying space..\n");
 	cpSpaceEachBody(space, (cpSpaceBodyIteratorFunc)cpBodyActivateWrap, NULL);
 	
 	cpSpatialIndexFree(space->staticShapes);
@@ -207,11 +208,13 @@ cpSpaceDestroy(cpSpace *space)
 	cpArrayFree(space->pooledArbiters);
 	
 	if(space->allocatedBuffers){
+		printf("arrayfree1\n");
 		cpArrayFreeEach(space->allocatedBuffers, cpfree);
 		cpArrayFree(space->allocatedBuffers);
 	}
 	
 	if(space->postStepCallbacks){
+		printf("arrayfree2\n");
 		cpArrayFreeEach(space->postStepCallbacks, cpfree);
 		cpArrayFree(space->postStepCallbacks);
 	}
@@ -223,6 +226,7 @@ cpSpaceDestroy(cpSpace *space)
 void
 cpSpaceFree(cpSpace *space)
 {
+	printf("Spacetest free\n");
 	if(space){
 		cpSpaceDestroy(space);
 		cpfree(space);

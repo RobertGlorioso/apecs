@@ -34,6 +34,7 @@ import           Apecs.Physics.Types
 
 C.context phycsCtx
 C.include "<chipmunk.h>"
+C.include "<stdio.h>"
 
 -- Body
 newBody :: SpacePtr -> Int -> IO (Ptr Body)
@@ -53,6 +54,7 @@ getBodyType bodyPtr = toEnum . fromIntegral <$> [C.exp| int { cpBodyGetType($(cp
 destroyBody :: SpacePtr -> Ptr Body -> IO ()
 destroyBody spacePtr bodyPtr = withForeignPtr spacePtr $ \space -> [C.block| void {
   cpBody *body = $(cpBody* bodyPtr);
+  printf("Freeing Body..\n");
   cpSpaceRemoveBody($(cpSpace* space), body);
   cpBodyFree(body); }|]
 

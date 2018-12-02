@@ -596,6 +596,7 @@ cpBBTreeDestroy(cpBBTree *tree)
 {
 	cpHashSetFree(tree->leaves);
 	
+	printf("cpBBTree Destroy\n");
 	if(tree->allocatedBuffers) cpArrayFreeEach(tree->allocatedBuffers, cpfree);
 	cpArrayFree(tree->allocatedBuffers);
 }
@@ -772,6 +773,7 @@ partitionNodes(cpBBTree *tree, Node **nodes, int count)
 	
 	qsort(bounds, count*2, sizeof(cpFloat), (int (*)(const void *, const void *))cpfcompare);
 	cpFloat split = (bounds[count - 1] + bounds[count])*0.5f; // use the medain as the split
+	printf("free bounds\n");
 	cpfree(bounds);
 
 	// Generate the child BBs
@@ -844,6 +846,7 @@ cpBBTreeOptimize(cpSpatialIndex *index)
 	
 	SubtreeRecycle(tree, root);
 	tree->root = partitionNodes(tree, nodes, count);
+	printf("free nodes\n");
 	cpfree(nodes);
 }
 

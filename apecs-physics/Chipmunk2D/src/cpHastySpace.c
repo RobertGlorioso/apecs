@@ -182,6 +182,7 @@ unsigned int __stdcall ThreadProc(void* userdata)
 	pthread_internal_thread* ud = (pthread_internal_thread*) userdata;
 	ud->start_routine(ud->arg);
 
+	printf("Freeing threadproc\n");
 	free(ud);
 
 	return 0;
@@ -582,6 +583,7 @@ cpHastySpaceFree(cpSpace *space)
 	pthread_cond_destroy(&hasty->cond_work);
 	pthread_cond_destroy(&hasty->cond_resume);
 	
+	printf("HastySpaceFree\n");
 	cpSpaceFree(space);
 }
 

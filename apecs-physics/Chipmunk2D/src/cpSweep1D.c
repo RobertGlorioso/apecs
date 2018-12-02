@@ -98,6 +98,7 @@ cpSweep1DNew(cpSpatialIndexBBFunc bbfunc, cpSpatialIndex *staticIndex)
 static void
 cpSweep1DDestroy(cpSweep1D *sweep)
 {
+	printf("Sweep1D destroy\n");
 	cpfree(sweep->table);
 	sweep->table = NULL;
 }

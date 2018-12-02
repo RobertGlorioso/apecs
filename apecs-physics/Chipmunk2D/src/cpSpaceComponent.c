@@ -68,6 +68,7 @@ cpSpaceActivateBody(cpSpace *space, cpBody *body)
 				arb->stamp = space->stamp;
 				cpArrayPush(space->arbiters, arb);
 				
+				printf("Freeing contacts..\n");
 				cpfree(contacts);
 			}
 		}

@@ -39,6 +39,7 @@ cpArrayNew(int size)
 void
 cpArrayFree(cpArray *arr)
 {
+	printf("ArrayFree\n");
 	if(arr){
 		cpfree(arr->arr);
 		arr->arr = NULL;
@@ -88,6 +89,7 @@ cpArrayDeleteObj(cpArray *arr, void *obj)
 void
 cpArrayFreeEach(cpArray *arr, void (freeFunc)(void*))
 {
+	printf("array free each\n");
 	for(int i=0; i<arr->num; i++) freeFunc(arr->arr[i]);
 }
 

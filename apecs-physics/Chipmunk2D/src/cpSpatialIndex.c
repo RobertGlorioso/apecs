@@ -24,6 +24,7 @@
 void
 cpSpatialIndexFree(cpSpatialIndex *index)
 {
+	printf("Spatial index free\n");
 	if(index){
 		cpSpatialIndexDestroy(index);
 		cpfree(index);

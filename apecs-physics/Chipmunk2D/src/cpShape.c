@@ -21,6 +21,7 @@
 
 #include "chipmunk_private.h"
 #include "chipmunk_unsafe.h"
+#include <stdio.h>
 
 #define CP_DefineShapeGetter(struct, type, member, name) \
 CP_DeclareShapeGetter(struct, type, name){ \
@@ -60,13 +61,16 @@ cpShapeInit(cpShape *shape, const cpShapeClass *klass, cpBody *body, struct cpSh
 void
 cpShapeDestroy(cpShape *shape)
 {
+	printf("Chipmunk: Destroying shape..\n");
 	if(shape->klass && shape->klass->destroy) shape->klass->destroy(shape);
 }
 
 void
 cpShapeFree(cpShape *shape)
 {
+	printf("Chipmunk: Testing shape..\n");
 	if(shape){
+		printf("Chipmunk: Freeing shape..\n");
 		cpShapeDestroy(shape);
 		cpfree(shape);
 	}

@@ -162,6 +162,7 @@ cpSpaceHashAlloc(void)
 static void
 cpSpaceHashAllocTable(cpSpaceHash *hash, int numcells)
 {
+	printf("free hash table\n");
 	cpfree(hash->table);
 	
 	hash->numcells = numcells;
@@ -199,6 +200,7 @@ cpSpaceHashNew(cpFloat celldim, int cells, cpSpatialIndexBBFunc bbfunc, cpSpatia
 static void
 cpSpaceHashDestroy(cpSpaceHash *hash)
 {
+	printf("Spacehash destroying\n");
 	if(hash->table) clearTable(hash);
 	cpfree(hash->table);
 	

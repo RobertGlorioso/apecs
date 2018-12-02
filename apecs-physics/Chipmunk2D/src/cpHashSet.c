@@ -43,6 +43,7 @@ struct cpHashSet {
 void
 cpHashSetFree(cpHashSet *set)
 {
+	printf("HashSetFree\n");
 	if(set){
 		cpfree(set->table);
 		
@@ -107,6 +108,7 @@ cpHashSetResize(cpHashSet *set)
 		}
 	}
 	
+	printf("HashSetResize\n");
 	cpfree(set->table);
 	
 	set->table = newTable;

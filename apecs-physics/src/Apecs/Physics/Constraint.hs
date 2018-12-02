@@ -32,6 +32,7 @@ import           Apecs.Physics.Types
 
 C.context phycsCtx
 C.include "<chipmunk.h>"
+C.include "<stdio.h>"
 
 -- Constraint
 newConstraint :: SpacePtr -> Ptr Body -> Ptr Body -> Int -> ConstraintType -> IO (Ptr Constraint)
@@ -138,6 +139,7 @@ newConstraint spacePtr bodyA bodyB (fromIntegral -> ety)
 destroyConstraint :: SpacePtr -> Ptr Constraint -> IO ()
 destroyConstraint spacePtr constraintPtr = withForeignPtr spacePtr $ \space -> [C.block| void {
   cpConstraint *constraint = $(cpConstraint* constraintPtr);
+  printf("Freeing Constraint..\n");
   cpSpaceRemoveConstraint($(cpSpace* space), constraint);
   cpConstraintFree(constraint); }|]
 

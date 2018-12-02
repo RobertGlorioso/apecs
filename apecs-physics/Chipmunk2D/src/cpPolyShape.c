@@ -31,6 +31,7 @@ cpPolyShapeAlloc(void)
 static void
 cpPolyShapeDestroy(cpPolyShape *poly)
 {
+	printf("polyShapeDestroy\n");
 	if(poly->count > CP_POLY_SHAPE_INLINE_ALLOC){
 		cpfree(poly->planes);
 	}

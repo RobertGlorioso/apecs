@@ -31,6 +31,7 @@ import           Apecs.Physics.Types
 
 C.context (phycsCtx <> C.vecCtx)
 C.include "<chipmunk.h>"
+C.include "<stdio.h>"
 
 maskAll, maskNone :: Bitmask
 maskAll  = complement zeroBits
@@ -118,6 +119,7 @@ newShape spacePtr' bodyPtr shape (fromIntegral -> ety) = withForeignPtr spacePtr
 destroyShape :: SpacePtr -> Ptr Shape -> IO ()
 destroyShape spacePtr shapePtr = withForeignPtr spacePtr $ \space -> [C.block| void {
   cpShape *shape = $(cpShape* shapePtr);
+  printf("Freeing Shape..\n");
   cpSpaceRemoveShape($(cpSpace* space), shape);
   cpShapeFree (shape); }|]
 

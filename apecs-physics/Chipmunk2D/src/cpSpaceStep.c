@@ -95,6 +95,7 @@ cpSpaceUnlock(cpSpace *space, cpBool runPostStep)
 				if(func) func(space, callback->key, callback->data);
 				
 				arr->arr[i] = NULL;
+				printf("Freeing callback\n");
 				cpfree(callback);
 			}
 			

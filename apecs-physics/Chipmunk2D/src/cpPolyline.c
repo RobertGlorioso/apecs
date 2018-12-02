@@ -55,6 +55,7 @@ cpPolylineShrink(cpPolyline *line)
 void
 cpPolylineFree(cpPolyline *line)
 {
+  printf("polylinefree\n");
 	cpfree(line);
 }
 
@@ -259,8 +260,10 @@ cpPolylineSetNew(void)
 void
 cpPolylineSetDestroy(cpPolylineSet *set, cpBool freePolylines)
 {
+  printf("free polylineset\n");
 	if(freePolylines){
 		for(int i=0; i<set->count; i++){
+
 			cpPolylineFree(set->lines[i]);
 		}
 	}
@@ -273,6 +276,7 @@ void
 cpPolylineSetFree(cpPolylineSet *set, cpBool freePolylines)
 {
 	if(set){
+	  printf("polyline free\n");
 		cpPolylineSetDestroy(set, freePolylines);
 		cpfree(set);
 	}

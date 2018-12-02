@@ -21,6 +21,7 @@
 
 #include <float.h>
 #include <stdarg.h>
+#include <stdio.h>
 
 #include "chipmunk_private.h"
 
@@ -94,7 +95,9 @@ void cpBodyDestroy(cpBody *body){}
 void
 cpBodyFree(cpBody *body)
 {
+	printf("Chipmunk: Testing body..\n");
 	if(body){
+	    printf("Chipmunk: Freeing body..\n");
 		cpBodyDestroy(body);
 		cpfree(body);
 	}

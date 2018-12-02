@@ -49,6 +49,7 @@ pointQuery (fmap realToFrac -> V2 px py) (realToFrac -> maxDistance) (CollisionF
         , pq);
       }|]
     res <- peek pq
+    putStrLn "Freeing PointQuery.."
     free pq
     if unEntity (pqShape res) == -1
        then return Nothing
